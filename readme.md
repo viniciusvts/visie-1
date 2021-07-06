@@ -8,6 +8,21 @@ Saída prevista: 3
 
 Resposta:
 
+    function countElementsAboveAverage(arr){
+        if(!Array.isArray(arr))
+            throw new TypeError('Parametro deve ser array');
+        var somaTodosOsItensArr = arr.reduce((total, atual)=>{
+            var soma =  total + atual;
+            return soma;
+        });
+        var mediaArr = somaTodosOsItensArr / arr.length;
+        var acimaDaMediaArr = arr.filter((value)=>{
+            var isArrayValid = (value > mediaArr);
+            return isArrayValid;
+        });
+        return acimaDaMediaArr.length;
+    }
+
 ## 2) Escreva uma função que receba uma array de strings não vazias e retorne a quantidade de strings iniciadas pela letra "a".
 
 Entrada: [‘front-end’, ’angular’, ’back-end’, ’database’, ’async’]
@@ -15,6 +30,18 @@ Entrada: [‘front-end’, ’angular’, ’back-end’, ’database’, ’asy
 Saída prevista: 2
 
 Resposta:
+
+    function countStringsStartsByA(arr){
+        if(!Array.isArray(arr))
+            throw new TypeError('Parametro deve ser array');
+        var qtdStringsA = 0;
+        arr.forEach(item => {
+            if (item.substring(0,1) == 'a'){
+                qtdStringsA++;
+            }
+        });
+        return qtdStringsA;
+    }
 
 ## 3) Escreva uma função que receba uma array de inteiros e retorne a soma de todos os números em índices ímpares.
 
@@ -24,6 +51,17 @@ Saída prevista: 84
 
 Resposta:
 
+    function countStringsStartsByA(arr){
+        if(!Array.isArray(arr))
+            throw new TypeError('Parametro deve ser array');
+        var qtdStringsA = 0;
+        arr.forEach(item => {
+            if (item.substring(0,1) == 'a'){
+                qtdStringsA++;
+            }
+        });
+        return qtdStringsA;
+    }
 
 ## 4) Escreva uma função que receba uma array de strings não vazias e retorne um novo vetor em que o primeiro letra de cada string foi substituído pela letra "a".
 
@@ -32,6 +70,16 @@ Entrada: [‘front-end’, ’back-end’, ’database’]
 Saída prevista: [‘aront-end’, ’aack-end’, ’aatabase’]
 
 Resposta:
+
+    function substituiPrimeiraLetraPorA(arr){
+        if(!Array.isArray(arr))
+            throw new TypeError('Parametro deve ser array');
+        var arrComLetraModificada = arr.map(value=>{
+            var firstLetter = value.substring(0,1);
+            return value.replace(firstLetter,'a');
+        });
+        return arrComLetraModificada;
+    }
 
 ## 5) Escreva uma função que receba uma string e 
 - elimine os espaços em seu início e término, 
@@ -45,6 +93,40 @@ Entrada: ' Olá usuário, bem-vindo ao sistema  '
 Saída prevista: 'Bom dia, usuário! Bem-vindo ao sistema'
 
 Resposta:
+
+    function trataString(str){
+        if(typeof str !== "string")
+            throw new TypeError('Parametro deve ser string');
+        var strWithNoSpace = str.trim();
+        var strCommaToE = strWithNoSpace.replace(',', '!');
+        var saudacao = emitirSaudacao();
+        strWithSaudacao = strCommaToE.replace(/olá/i, saudacao);
+        return strWithSaudacao;
+    }
+
+    /**
+    * Saudação com base no horário
+    * @returns {'Bom dia'|'Boa tarde'|'Boa noite'} Saudação
+    */
+    function emitirSaudacao(){
+        var dataAtual = new Date();
+        var horaAtual = dataAtual.getHours();
+        switch (true) {
+            case horaAtual < 5:
+                return 'Boa noite'
+                break;
+            case horaAtual < 12:
+                return 'Bom dia'
+                break;
+            case horaAtual < 18:
+                return 'Boa tarde'
+                break; 
+            default:
+                // se maior que 18, é noite
+                return 'Boa noite'
+                break;
+        }
+    }
 
 
 # Informações e instruções
